@@ -141,7 +141,7 @@ void Notepad::printDocument()
 void Notepad::selectFont()
 {
     bool hasFontSelected;
-    QFont font = QFontDialog::getFont(&hasFontSelected, this);
+    QFont font = QFontDialog::getFont(&hasFontSelected, ui->textEdit->font(), this);
     if (hasFontSelected) {
         ui->textEdit->setFont(font);
         settings.setValue("user/font", font.toString());
