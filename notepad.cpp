@@ -9,6 +9,7 @@ Notepad::Notepad(QWidget *parent)
     , ui(new Ui::Notepad)
 {
     ui->setupUi(this);
+    setWindowTitle("New document");
 
     connect(ui->actionNew, &QAction::triggered, this, &Notepad::newDocument);
     connect(ui->actionOpen, &QAction::triggered, this, &Notepad::openDocument);
@@ -25,7 +26,9 @@ Notepad::~Notepad()
 
 void Notepad::newDocument()
 {
-
+    currentFilename.clear();
+    ui->textEdit->setText(QString());
+    setWindowTitle("New document");
 }
 
 void Notepad::openDocument()
