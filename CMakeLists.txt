@@ -19,13 +19,15 @@ set(PROJECT_SOURCES
         notepad.ui
 )
 
+set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/resources/icons/notepad.rc")
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Notepad
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         resources.qrc
         aboutdialog.h aboutdialog.cpp aboutdialog.ui
-
+        ${app_icon_resource_windows}
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Notepad APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
