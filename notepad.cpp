@@ -1,6 +1,9 @@
 #include "notepad.h"
 #include "./ui_notepad.h"
 
+#include <QFileDialog>
+#include <QMessageBox>
+
 Notepad::Notepad(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Notepad)
@@ -27,7 +30,24 @@ void Notepad::newDocument()
 
 void Notepad::openDocument()
 {
+    QString filename = QFileDialog::getOpenFileName(this, "Open a file");
+    if (filename.isEmpty()) {
+        return;
+    }
 
+    QFile file(filename);
+    currentFilename = filename;
+    if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot open file" + file.errorString());
+        return;
+    }
+
+    setWindowTitle(filename);
+
+    QTextStream in(&file);
+    QString text = in.readAll();
+    ui->textEdit->setText(text);
+    file.close();
 }
 
 void Notepad::saveDocument()

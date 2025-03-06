@@ -33,6 +33,6 @@ private slots:
 
 private:
     Ui::Notepad *ui;
-    QString currentFile;
+    QString currentFilename;
 };
 #endif // NOTEPAD_H
