@@ -15,6 +15,7 @@ Notepad::Notepad(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("New document");
+    setMinimumSize(280, 160);
 
     ui->textEdit->setStyleSheet("QTextEdit:focus { outline: none; }"); // remove purple focus line
 
