@@ -10,6 +10,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("esis-italia.com");
     QCoreApplication::setApplicationName("Notepad");
 
+    app.setWindowIcon(QIcon(":/icons/notepad.ico"));
+
     Notepad notepad;
     notepad.show();
 

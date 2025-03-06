@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="notepad.ico">resources/icons/notepad.ico</file>
+    </qresource>
+</RCC>
