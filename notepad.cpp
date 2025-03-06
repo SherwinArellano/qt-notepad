@@ -15,6 +15,8 @@ Notepad::Notepad(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("New document");
 
+    ui->textEdit->setStyleSheet("QTextEdit:focus { outline: none; }"); // remove purple focus line
+
     connect(ui->actionNew, &QAction::triggered, this, &Notepad::newDocument);
     connect(ui->actionOpen, &QAction::triggered, this, &Notepad::openDocument);
     connect(ui->actionSave, &QAction::triggered, this, &Notepad::saveDocument);
