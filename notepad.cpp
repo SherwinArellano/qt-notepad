@@ -3,6 +3,8 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPrinter>
+#include <QPrintDialog>
 
 Notepad::Notepad(QWidget *parent)
     : QMainWindow(parent)
@@ -111,7 +113,19 @@ void Notepad::saveAsDocument()
 
 void Notepad::printDocument()
 {
+#if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printer)
+    QPrinter printDev;
+#if QT_CONFIG(printdialog)
+    QPrintDialog dialog(&printDev, this);
 
+    if (dialog.exec() == QDialog::Rejected) {
+        return;
+    }
+#endif // QT_CONFIG(printdialog)
+    ui->textEdit->print(&printDev);
+#else
+    QMessageBox::information(this, "Printing Not Supported", "Printing is not supported in this build.");
+#endif // QT_CONFIG(printer)
 }
 
 void Notepad::exit()
