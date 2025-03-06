@@ -1,5 +1,6 @@
 #include "notepad.h"
 #include "./ui_notepad.h"
+#include "aboutdialog.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -25,6 +26,7 @@ Notepad::Notepad(QWidget *parent)
     connect(ui->actionSave_as, &QAction::triggered, this, &Notepad::saveAsDocument);
     connect(ui->actionPrint, &QAction::triggered, this, &Notepad::printDocument);
     connect(ui->actionSelect_font, &QAction::triggered, this, &Notepad::selectFont);
+    connect(ui->actionAbout, &QAction::triggered, this, &Notepad::showAboutDialog);
     connect(ui->actionExit, &QAction::triggered, this, &Notepad::exit);
 
     loadWindowSize();
@@ -178,3 +180,10 @@ void Notepad::closeEvent(QCloseEvent *event) {
     saveWindowSize();
     QMainWindow::closeEvent(event);
 }
+
+void Notepad::showAboutDialog()
+{
+    AboutDialog aboutDialog(this);
+    aboutDialog.exec();
+}
+

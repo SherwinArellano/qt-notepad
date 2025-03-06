@@ -35,6 +35,8 @@ private slots:
 
     void selectFont();
 
+    void showAboutDialog();
+
     void exit();
 
 private:

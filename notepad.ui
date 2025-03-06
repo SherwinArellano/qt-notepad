@@ -45,6 +45,8 @@
      <string>Preferences</string>
     </property>
     <addaction name="actionSelect_font"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuNew"/>
    <addaction name="menuPreferences"/>
@@ -122,6 +124,17 @@
    </property>
    <property name="toolTip">
     <string>Select a font for text editor.</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DialogQuestion"/>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>About this program.</string>
    </property>
   </action>
  </widget>
