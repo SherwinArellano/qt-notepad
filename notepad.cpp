@@ -87,7 +87,26 @@ void Notepad::saveDocument()
 
 void Notepad::saveAsDocument()
 {
+    QString filenameToSave = QFileDialog::getSaveFileName(this, "Save as");
+    if (filenameToSave.isEmpty()) {
+        return;
+    }
 
+    QFile file(filenameToSave);
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+
+    currentFilename = filenameToSave;
+
+    setWindowTitle(filenameToSave);
+
+    QTextStream out(&file);
+    QString text = ui->textEdit->toPlainText();
+    out << text;
+
+    file.close();
 }
 
 void Notepad::printDocument()
