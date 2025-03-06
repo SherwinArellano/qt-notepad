@@ -130,5 +130,5 @@ void Notepad::printDocument()
 
 void Notepad::exit()
 {
-
+    QCoreApplication::quit();
 }
