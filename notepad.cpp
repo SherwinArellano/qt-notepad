@@ -13,32 +13,32 @@ Notepad::~Notepad()
     delete ui;
 }
 
-void Notepad::on_actionNew_triggered()
+void Notepad::newDocument()
 {
 
 }
 
-void Notepad::on_actionOpen_triggered()
+void Notepad::openDocument()
 {
 
 }
 
-void Notepad::on_actionSave_triggered()
+void Notepad::saveDocument()
 {
 
 }
 
-void Notepad::on_actionSave_as_triggered()
+void Notepad::saveAsDocument()
 {
 
 }
 
-void Notepad::on_actionPrint_triggered()
+void Notepad::printDocument()
 {
 
 }
 
-void Notepad::on_actionExit_triggered()
+void Notepad::exit()
 {
 
 }
