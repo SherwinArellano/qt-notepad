@@ -2,6 +2,7 @@
 #define NOTEPAD_H
 
 #include <QMainWindow>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -36,5 +37,8 @@ private slots:
 private:
     Ui::Notepad *ui;
     QString currentFilename;
+    QSettings settings;
+
+    void loadUserPreferences();
 };
 #endif // NOTEPAD_H

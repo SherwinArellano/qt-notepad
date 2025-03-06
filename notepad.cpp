@@ -6,6 +6,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QFontDialog>
+#include <QDebug>
 
 Notepad::Notepad(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +22,8 @@ Notepad::Notepad(QWidget *parent)
     connect(ui->actionPrint, &QAction::triggered, this, &Notepad::printDocument);
     connect(ui->actionSelect_font, &QAction::triggered, this, &Notepad::selectFont);
     connect(ui->actionExit, &QAction::triggered, this, &Notepad::exit);
+
+    loadUserPreferences();
 }
 
 Notepad::~Notepad()
@@ -136,10 +139,19 @@ void Notepad::selectFont()
     QFont font = QFontDialog::getFont(&hasFontSelected, this);
     if (hasFontSelected) {
         ui->textEdit->setFont(font);
+        settings.setValue("user/font", font.toString());
     }
 }
 
 void Notepad::exit()
 {
     QCoreApplication::quit();
+}
+
+void Notepad::loadUserPreferences()
+{
+    QString fontString = settings.value("user/font", "Arial").toString();
+    QFont font;
+    font.fromString(fontString);
+    ui->textEdit->setFont(font);
 }
