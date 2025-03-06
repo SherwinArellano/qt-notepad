@@ -19,6 +19,9 @@ public:
     Notepad(QWidget *parent = nullptr);
     ~Notepad();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private slots:
     void newDocument();
 
@@ -40,5 +43,9 @@ private:
     QSettings settings;
 
     void loadUserPreferences();
+
+    void saveWindowSize();
+
+    void loadWindowSize();
 };
 #endif // NOTEPAD_H

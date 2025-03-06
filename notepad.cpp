@@ -7,6 +7,7 @@
 #include <QPrintDialog>
 #include <QFontDialog>
 #include <QDebug>
+#include <QCloseEvent>
 
 Notepad::Notepad(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,7 @@ Notepad::Notepad(QWidget *parent)
     connect(ui->actionSelect_font, &QAction::triggered, this, &Notepad::selectFont);
     connect(ui->actionExit, &QAction::triggered, this, &Notepad::exit);
 
+    loadWindowSize();
     loadUserPreferences();
 }
 
@@ -156,4 +158,22 @@ void Notepad::loadUserPreferences()
     QFont font;
     font.fromString(fontString);
     ui->textEdit->setFont(font);
+}
+
+void Notepad::saveWindowSize()
+{
+    settings.setValue("window/width", width());
+    settings.setValue("window/height", height());
+}
+
+void Notepad::loadWindowSize()
+{
+    int width = settings.value("window/width", 800).toInt();
+    int height = settings.value("window/height", 600).toInt();
+    resize(width, height);
+}
+
+void Notepad::closeEvent(QCloseEvent *event) {
+    saveWindowSize();
+    QMainWindow::closeEvent(event);
 }
