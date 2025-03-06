@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QFontDialog>
 
 Notepad::Notepad(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +19,7 @@ Notepad::Notepad(QWidget *parent)
     connect(ui->actionSave, &QAction::triggered, this, &Notepad::saveDocument);
     connect(ui->actionSave_as, &QAction::triggered, this, &Notepad::saveAsDocument);
     connect(ui->actionPrint, &QAction::triggered, this, &Notepad::printDocument);
+    connect(ui->actionSelect_font, &QAction::triggered, this, &Notepad::selectFont);
     connect(ui->actionExit, &QAction::triggered, this, &Notepad::exit);
 }
 
@@ -126,6 +128,15 @@ void Notepad::printDocument()
 #else
     QMessageBox::information(this, "Printing Not Supported", "Printing is not supported in this build.");
 #endif // QT_CONFIG(printer)
+}
+
+void Notepad::selectFont()
+{
+    bool hasFontSelected;
+    QFont font = QFontDialog::getFont(&hasFontSelected, this);
+    if (hasFontSelected) {
+        ui->textEdit->setFont(font);
+    }
 }
 
 void Notepad::exit()

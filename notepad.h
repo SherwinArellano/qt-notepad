@@ -29,6 +29,8 @@ private slots:
 
     void printDocument();
 
+    void selectFont();
+
     void exit();
 
 private:
